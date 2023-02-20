@@ -69,6 +69,6 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 # 技術スタック
-- UIライブラリ(react-bootstrap)
-- 状態管理(recoil)
-- ルーティング(react location)
+- [UIライブラリ(react-bootstrap)](https://react-bootstrap.github.io/getting-started/introduction)
+- [状態管理(recoil)](https://recoiljs.org/docs/introduction/getting-started)
+- [ルーティング(react location)](https://react-location.tanstack.com/overview)
