@@ -68,8 +68,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# ohana
-# ohana
-# ohana
-# ohana
-# ohana
+# 技術スタック
+- UIライブラリ(react-bootstrap)
+- 状態管理(recoil)
+- ルーティング(react location)
