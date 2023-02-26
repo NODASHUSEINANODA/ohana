@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { Router, Outlet, Link } from '@tanstack/react-location';
+import { RecoilRoot } from 'recoil';
+import { location, routes } from './core/Router';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <RecoilRoot>
+      <Router routes={routes} location={location}>
+        <div>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="recoil">Recoil Sample</Link>
+            </li>
+          </ul>
+        </div>
+        <Outlet /> {/* パスが一致した際にレンダリングされるコンポーネント */}
+      </Router>
+    </RecoilRoot>
   );
 }
 
-export default App;
+export default App
