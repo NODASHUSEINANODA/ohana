@@ -1,6 +1,11 @@
+import { useState } from 'react'
 import { Button, Container, Form, Row, Col } from 'react-bootstrap'
 
 const AddEmployee = () => {
+
+  // TODO: recoilに書き換える(UIのみ表示のタスクのため、useStateを使用)
+  const [check, setCheck] = useState(false)
+
   return (
     <Container>
       <h2 className='text-primary'>メンバー新規追加</h2>
@@ -53,7 +58,30 @@ const AddEmployee = () => {
               <Form.Control type='tel' />
             </Form.Group>
           </Col>
-          <Col xs='auto' className='my-1'>
+          <Col md={2}>
+            <Form.Group className="mb-3" controlId="checkbox">
+              <Form.Check
+                inline
+                label="この人は管理者です"
+                type="checkbox"
+                id="checkbox"
+                className='mx-2 mb-5'
+                onChange={(event) => {
+                  setCheck(event.target.checked)
+                }}
+              />
+            </Form.Group>
+          </Col>
+          <Col md={2}>
+            {check &&
+              <Form.Group className="mb-3" controlId="admin_mail_address">
+                <Form.Label>管理者メールアドレス :</Form.Label>
+                <Form.Control type='input' />
+              </Form.Group>
+            }
+          </Col>
+          <Col xs={8} />
+          <Col xs={12} className='my-1 text-center'>
             <Button variant="primary" type="submit" className='px-5' >
               登録
             </Button>
