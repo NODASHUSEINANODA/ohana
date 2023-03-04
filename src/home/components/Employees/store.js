@@ -8,7 +8,7 @@ const state = atom({
   key: `${key}/atom`,
   default: {
     loading: false,
-    employees: [],
+    employees: null,
   }
 })
 
