@@ -62,7 +62,6 @@ const AddEmployee = () => {
                 required
                 aria-label="Default select example"
                 onChange={(event) => {
-                  console.log(event)
                   setSex(event.target.value)
                 }}
                 isInvalid={submited && sexIsInvalid}
@@ -130,7 +129,6 @@ const AddEmployee = () => {
               </Form.Control.Feedback>
             </Form.Group>
           </Col>
-          {/* TODO: submit時にvalidationかける必要あり */}
           <Col md={2}>
             <Form.Group className="mb-3" controlId="phone_number">
               <Form.Label>電話番号 :</Form.Label>

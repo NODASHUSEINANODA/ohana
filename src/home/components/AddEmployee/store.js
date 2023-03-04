@@ -50,8 +50,6 @@ const sexIsInvalid = selector({
   key: `${key}/selector/sex/validate`,
   get: ({ get }) => {
     const { sex } = get(state);
-    console.log("~~ sex ~~")
-    console.log(sex)
     if (sex === "invalid") { return true }
 
     return false ;
