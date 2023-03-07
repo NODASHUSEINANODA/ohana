@@ -1,4 +1,4 @@
-import { Router, Outlet, Link } from '@tanstack/react-location';
+import { Router, Outlet } from '@tanstack/react-location';
 import { RecoilRoot } from 'recoil';
 import Alert from './core/Alert';
 import { location, routes } from './core/Router';
