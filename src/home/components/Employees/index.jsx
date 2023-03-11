@@ -1,14 +1,10 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Button, Container, Table } from 'react-bootstrap'
+import { actions, selectors } from './store'
 
 const Employees = () => {
-  const [employees, setEmployees] = useState()
-
-  const getEmployees = useCallback(async () => {
-    await fetch('http://localhost:3002/employees', { method: 'GET' })
-      .then(response => response.json())
-      .then(data => setEmployees(data));
-  }, [])
+  const employees = selectors.useEmployees()
+  const fetchEmployees = actions.useFetchEmployees()
 
   const calc_age = (birthdayStr) => {
     const birthday = new Date(birthdayStr);
@@ -24,8 +20,8 @@ const Employees = () => {
   }
 
   useEffect(() => {
-    getEmployees()
-  }, [getEmployees])
+    fetchEmployees()
+  }, [fetchEmployees])
 
   return (
     <Container>
