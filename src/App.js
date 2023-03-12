@@ -1,5 +1,6 @@
-import { Router, Outlet, Link } from '@tanstack/react-location';
+import { Router, Outlet } from '@tanstack/react-location';
 import { RecoilRoot } from 'recoil';
+import Alert from './core/Alert';
 import { location, routes } from './core/Router';
 
 const App = () => {
@@ -9,6 +10,7 @@ const App = () => {
         {/* パスが一致した際にレンダリングされるコンポーネント */}
         <Outlet />
       </Router>
+      <Alert />
     </RecoilRoot>
   );
 }
