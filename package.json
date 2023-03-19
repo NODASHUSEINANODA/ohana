@@ -22,7 +22,7 @@
   "scripts": {
     "start": "PORT=8080 react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest",
     "eject": "react-scripts eject",
     "json": "json-server db.json --port 3002"
   },
