@@ -42,7 +42,7 @@ network:
 
 # You can override any of the values defined above by environment.
 environments:
-  dev:
-    count: 1               # Number of tasks to run for the "dev" environment.
-    deployment:            # The deployment strategy for the "dev" environment.
+  test:
+    count: 1               # Number of tasks to run for the "test" environment.
+    deployment:            # The deployment strategy for the "test" environment.
       rolling: 'recreate' # Stops existing tasks before new ones are started for faster deployments.
