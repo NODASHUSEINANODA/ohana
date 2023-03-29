@@ -17,7 +17,7 @@ const employees = selector({
   get: ({ get }) => {
     const { employees } = get(state);
 
-    return employees ;
+    return employees;
   },
 });
 
