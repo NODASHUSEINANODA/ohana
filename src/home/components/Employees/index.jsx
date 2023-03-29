@@ -1,23 +1,11 @@
 import { useEffect } from 'react'
 import { Button, Container, Table } from 'react-bootstrap'
 import { actions, selectors } from './store'
+import { calc_age } from '../../../lib/Date'
 
 const Employees = () => {
   const employees = selectors.useEmployees()
   const fetchEmployees = actions.useFetchEmployees()
-
-  const calc_age = (birthdayStr) => {
-    const birthday = new Date(birthdayStr);
-    const now = new Date();
-    let age = now.getFullYear() - birthday.getFullYear();
-
-    // 誕生日の月と現在の月を比較して、誕生日前ならば年齢を 1 減らす
-    if (now.getMonth() < birthday.getMonth() ||
-      (now.getMonth() === birthday.getMonth() && now.getDate() < birthday.getDate())) {
-      age--;
-    }
-    return age
-  }
 
   useEffect(() => {
     fetchEmployees()
