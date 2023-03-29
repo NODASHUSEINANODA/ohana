@@ -101,6 +101,7 @@ const EditEmployee = () => {
               <Form.Label>電話番号 :</Form.Label>
               <Form.Control
                 type='tel'
+                placeholder={employee?.phone_number}
                 onChange={(event) => {
                   console.log(event)
                 }}
