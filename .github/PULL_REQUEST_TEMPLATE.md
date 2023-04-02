@@ -1,6 +1,6 @@
 ## チケットへのリンク
 
-* https://github.com/NODASHUSEINANODA/ohana/issues/**
+* close #
 
 ## やったこと
 
