@@ -1,8 +1,8 @@
 import Cookies from "js-cookie";
 import { useContext, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
-import { signIn } from "../../api/auth";
-import { AuthContext } from "../../App";
+import {   useHistory } from "react-router-dom";
+import { signIn } from "../../../api/auth";
+import { AuthContext } from "../../../App.jsx";
 import { Button, Container, Form, Row, Col } from 'react-bootstrap'
 
 export const SignIn = () => {
@@ -59,7 +59,6 @@ export const SignIn = () => {
               onChange={(event) => {
                 setEmail(event.target.value)
               }}
-              isInvalid={submitted && emailInvalid}
             />
             <Form.Control.Feedback type="invalid">
               入力欄が空か、適切な値ではありません。
@@ -67,34 +66,32 @@ export const SignIn = () => {
           </Form.Group>
           </Col>
           <Col md={2}>
-          <Form.Group className="mb-3" controlId="password">
-            <Form.Label>パスワード :</Form.Label>
-            <Form.Control
-              required
-              type='input'
-              onChange={(event) => {
-                setPassword(event.target.value)
-              }}
-              isInvalid={submited && passwordIsInvalid}
-            />
-            <Form.Control.Feedback type="invalid">
-              入力欄が空です。
-            </Form.Control.Feedback>
-          </Form.Group>
+            <Form.Group className="mb-3" controlId="password">
+              <Form.Label>パスワード :</Form.Label>
+              <Form.Control
+                required
+                type='input'
+                onChange={(event) => {
+                  setPassword(event.target.value)
+                }}
+              />
+              <Form.Control.Feedback type="invalid">
+                入力欄が空です。
+              </Form.Control.Feedback>
+            </Form.Group>
           </Col>
           <Col xs={8} />
-          <Col xs={12} className='my-1 text-center'>
-            <Button
-              variant="primary"
-              type="submit"
-              className='px-5'
-            >
-              ログイン
-            </Button>
+            <Col xs={12} className='my-1 text-center'>
+              <Button
+                variant="primary"
+                type="submit"
+                className='px-5'
+              >
+                ログイン
+              </Button>
           </Col>
         </Row>
       </Form>  
-      <Link to="/signup">サインアップへ</Link>
     </Container>
   )
 }

@@ -1,12 +1,8 @@
-import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
-import { signUp } from "../../api/auth";
-import { AuthContext } from "../../App";
+import { useState } from "react";
+import { signUp } from "../../../api/auth";
 import { Button, Container, Form, Row, Col } from 'react-bootstrap'
 
 export const SignUp = () => {
-  const { setIsSignedIn, setCurrentUser } = useContext(AuthContext);
-
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
@@ -56,7 +52,6 @@ export const SignUp = () => {
               onChange={(e) => {
                 setName(e.target.value)
               }}
-              isInvalid={submited && nameIsInvalid}
             />
             <Form.Control.Feedback type="invalid">
                 入力欄が空です。
@@ -71,7 +66,6 @@ export const SignUp = () => {
               onChange={(event) => {
                 setEmail(event.target.value)
               }}
-              isInvalid={submited && emailIsInvalid}
             />
             <Form.Control.Feedback type="invalid">
               入力欄が空か、適切な値ではありません。
@@ -86,8 +80,7 @@ export const SignUp = () => {
               type='input'
               onChange={(event) => {
                 setAddress(event.target.value)
-              }}
-              isInvalid={submited && addressIsInvalid}
+              }}          
             />
             <Form.Control.Feedback type="invalid">
               入力欄が空です。
@@ -102,8 +95,7 @@ export const SignUp = () => {
               type='input'
               onChange={(event) => {
                 setPassword(event.target.value)
-              }}
-              isInvalid={submited && passwordIsInvalid}
+              }}            
             />
             <Form.Control.Feedback type="invalid">
               入力欄が空です。
@@ -119,7 +111,6 @@ export const SignUp = () => {
               onChange={(event) => {
                 setPasswordConfirmation(event.target.value)
               }}
-              isInvalid={submited && passwordConfirmationIsInvalid}
             />
             <Form.Control.Feedback type="invalid">
               入力欄が空です。
@@ -147,7 +138,6 @@ export const SignUp = () => {
           </Col>
         </Row>
       </Form> 
-      <Link to="/signin">サインインへ</Link>
     </Container>
   )
 }
