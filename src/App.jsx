@@ -1,6 +1,6 @@
 import { RecoilRoot } from "recoil";
-import { Alert } from "react-bootstrap";
 import Router from "./core/components/Router";
+import Alert from "./core/components/Alert";
 
 function App() {
   return (
