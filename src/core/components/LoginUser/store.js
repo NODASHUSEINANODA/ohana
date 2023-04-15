@@ -1,6 +1,6 @@
 import React from "react";
 import { atom, selector, useRecoilValue, useSetRecoilState } from "recoil";
-import { getCurrentUser } from '../../../api/auth'
+import Auth from '../../datasources/Auth'
 
 const key = 'login_user'
 
@@ -33,13 +33,14 @@ export const selectors = {
 
 // 状態を変更する関数をまとめてexport
 export const actions = {
-  useGetCurrentUser: (() => {
+  useGetCurrentUser: ((showError) => {
     const setState = useSetRecoilState(state)
 
     return React.useCallback(async () => {
       setState((prev) => ({ ...prev, loading: true }))
       try {
-        const res = await getCurrentUser();
+        const res = await Auth.getCurrentUser();
+        console.log(res)
 
         if (res?.status === 200) {
           setState((prev) => ({
@@ -52,10 +53,11 @@ export const actions = {
         }
       } catch (e) {
         setState((prev) => ({ ...prev, currentUser: null }))
+        showError(e.message)
         throw e
       } finally {
         setState((prev) => ({ ...prev, loading: false }))
       }
-    }, [setState])
+    }, [setState, showError])
   })
 }

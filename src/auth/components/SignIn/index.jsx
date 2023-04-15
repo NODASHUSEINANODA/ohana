@@ -1,9 +1,9 @@
 import Cookies from "js-cookie";
 import { useEffect } from "react";
-import { signIn } from "../../../api/auth";
 import { Button, Container, Form, Row, Col } from 'react-bootstrap'
 import { actions, selectors } from "./store";
 import { selectors as LoginUserSelectors } from "../../../core/components/LoginUser/store";
+import Auth from "../../../core/datasources/Auth";
 
 export const SignIn = () => {
   const currentUser = LoginUserSelectors.useCurrentUser()
@@ -18,7 +18,7 @@ export const SignIn = () => {
     const params = state;
 
     try {
-      const res = await signIn(params);
+      const res = await Auth.signIn(params);
       if (res.status === 200) {
         Cookies.set("_access_token", res.headers["access-token"]);
         Cookies.set("_client", res.headers["client"]);
