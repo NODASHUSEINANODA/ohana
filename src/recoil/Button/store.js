@@ -33,7 +33,7 @@ const numberSquare = selector({
     const button = get(state);
 
     // ここに状態の計算ロジックを書く
-    const square = button.number ** 2
+    const square = button.number + 1
 
     return square;
   },

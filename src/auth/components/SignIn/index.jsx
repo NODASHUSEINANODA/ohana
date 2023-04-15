@@ -1,29 +1,22 @@
 import Cookies from "js-cookie";
-import { useContext, useState } from "react";
-import {   useHistory } from "react-router-dom";
+import { useEffect } from "react";
+// import { useHistory } from "react-router-dom";
 import { signIn } from "../../../api/auth";
-import { AuthContext } from "../../../App.jsx";
 import { Button, Container, Form, Row, Col } from 'react-bootstrap'
+import { actions, selectors } from "./store";
+import { selectors as LoginUserSelectors } from "../../../core/components/LoginUser/store";
 
 export const SignIn = () => {
-  const { setIsSignedIn, setCurrentUser } = useContext(AuthContext);
+  const currentUser = LoginUserSelectors.useCurrentUser()
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const history = useHistory();
-
-  const generateParams = () => {
-    const signInParams = {
-      email: email,
-      password: password,
-    };
-    return signInParams;
-  };
+  // const history = useHistory();
+  const state = selectors.useParams()
+  const setEmail = actions.useSetEmail()
+  const setPassword = actions.useSetPassword()
 
   const handleSignInSubmit = async (e) => {
     e.preventDefault();
-    const params = generateParams();
+    const params = state;
 
     try {
       const res = await signIn(params);
@@ -32,15 +25,23 @@ export const SignIn = () => {
         Cookies.set("_client", res.headers["client"]);
         Cookies.set("_uid", res.headers["uid"]);
 
-        setIsSignedIn(true);
-        setCurrentUser(res.data.data);
+        // setIsSignedIn(true);
+        // setCurrentUser(res.data.data);
 
-        history.push("/");
+        // history.push("/");
       }
     } catch (e) {
       console.log(e);
     }
   };
+
+  useEffect(() => {
+    if (currentUser) {
+      // history.push("/");
+    }
+  }, [currentUser
+  ])
+
   return (
     <Container>
       <h2>サインインページです</h2>
@@ -50,20 +51,20 @@ export const SignIn = () => {
         onSubmit={handleSignInSubmit}
       >
         <Row className="justify-content-center">
-        <Col md={2}>
-          <Form.Group className="mb-3" controlId="email">
-            <Form.Label>メールアドレス :</Form.Label>
-            <Form.Control
-              required
-              type='input'
-              onChange={(event) => {
-                setEmail(event.target.value)
-              }}
-            />
-            <Form.Control.Feedback type="invalid">
-              入力欄が空か、適切な値ではありません。
-            </Form.Control.Feedback>
-          </Form.Group>
+          <Col md={2}>
+            <Form.Group className="mb-3" controlId="email">
+              <Form.Label>メールアドレス :</Form.Label>
+              <Form.Control
+                required
+                type='input'
+                onChange={(event) => {
+                  setEmail(event.target.value)
+                }}
+              />
+              <Form.Control.Feedback type="invalid">
+                入力欄が空か、適切な値ではありません。
+              </Form.Control.Feedback>
+            </Form.Group>
           </Col>
           <Col md={2}>
             <Form.Group className="mb-3" controlId="password">
@@ -81,17 +82,17 @@ export const SignIn = () => {
             </Form.Group>
           </Col>
           <Col xs={8} />
-            <Col xs={12} className='my-1 text-center'>
-              <Button
-                variant="primary"
-                type="submit"
-                className='px-5'
-              >
-                ログイン
-              </Button>
+          <Col xs={12} className='my-1 text-center'>
+            <Button
+              variant="primary"
+              type="submit"
+              className='px-5'
+            >
+              ログイン
+            </Button>
           </Col>
         </Row>
-      </Form>  
+      </Form>
     </Container>
   )
 }
