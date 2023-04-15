@@ -1,6 +1,5 @@
 import Cookies from "js-cookie";
 import { useEffect } from "react";
-// import { useHistory } from "react-router-dom";
 import { signIn } from "../../../api/auth";
 import { Button, Container, Form, Row, Col } from 'react-bootstrap'
 import { actions, selectors } from "./store";

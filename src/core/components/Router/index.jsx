@@ -1,59 +1,42 @@
-import { Outlet, ReactLocation, Router as LocationRouter } from '@tanstack/react-location';
+import React from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { selectors } from '../LoginUser/store';
 import Home from '../../../home/screen';
-import SignIn from '../../../auth/components/SignIn'
-import SignUp from '../../../auth/components/SignUp'
-import RecoilButton from '../../../recoil/Button';
-import { useEffect } from 'react';
-import { actions, selectors } from '../LoginUser/store';
+import SignIn from '../../../auth/components/SignIn';
+import SignUp from '../../../auth/components/SignUp';
 
 const Router = () => {
   const currentUser = selectors.useCurrentUser()
-  const getCurrentUser = actions.useGetCurrentUser()
-  // const navigate = useNavigate()
-  const location = new ReactLocation();
-  const routes = [
-    {
-      path: '/',
-      element: <Home />,
-    },
-    {
-      path: '/signup',
-      element: <SignUp />
-    },
-    {
-      path: '/signin',
-      element: <SignIn />
-    },
-    {
-      path: 'recoil',
-      children: [
-        {
-          path: '/',
-          element: <RecoilButton />
-        },
-      ],
-    },
-  ];
+  console.log(currentUser)
 
-  useEffect(() => {
-    getCurrentUser()
-  }, [getCurrentUser])
-
+  // ログインしてない時はsigninにリダイレクトさせる
   if (!currentUser) {
-    console.log('hoge')
-    // navigate({ to: '/signin', replace: true })
-    // return (<Navigate to='/login' />)
-  } else {
-    console.log(currentUser)
+    console.log("currentUser~~~~~~~~~")
+    return (
+      <BrowserRouter>
+        <Routes>
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
+
+          {/* 上で宣言しているローティング以外にアクセスした場合はsigninにリダイレクトさせる */}
+          <Route path="*" element={<Navigate to="/signin" replace />} />
+        </Routes>
+      </BrowserRouter>
+    );
   }
 
   return (
-    <LocationRouter routes={routes} location={location}>
-      {/* パスが一致した際にレンダリングされるコンポーネント */}
-      <Outlet />
-    </LocationRouter>
-  )
-}
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
 
-export default Router
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp />} />
 
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </BrowserRouter>
+  );
+};
+
+export default Router;

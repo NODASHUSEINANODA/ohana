@@ -1,17 +1,13 @@
-// import { BrowserRouter } from "react-router-dom";
 import { RecoilRoot } from "recoil";
-import Router from "./core/components/Router";
 import { Alert } from "react-bootstrap";
+import Router from "./core/components/Router";
 
-function
-  App() {
+function App() {
   return (
-    // <BrowserRouter>
     <RecoilRoot>
       <Router />
       <Alert />
     </RecoilRoot>
-    // </BrowserRouter>
   );
 }
 
