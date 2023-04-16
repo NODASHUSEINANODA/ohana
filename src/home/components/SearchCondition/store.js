@@ -10,7 +10,7 @@ const state = atom({
     sex: "",
     birthday: "",
     address: "",
-    work_yaer: null,
+    joined_at: null,
     phone_number: "",
     is_admin: false,
     admin_mail_address: "",
@@ -77,11 +77,11 @@ export const actions = {
     }, [setState])
   }),
 
-  useSetWorkYaer: (() => {
+  useSetJoinedAt: (() => {
     const setState = useSetRecoilState(state)
 
-    return React.useCallback((workYaer) => {
-      setState((prev) => ({ ...prev, work_yaer: workYaer }))
+    return React.useCallback((joined_at) => {
+      setState((prev) => ({ ...prev, joined_at: joined_at }))
     }, [setState])
   }),
 

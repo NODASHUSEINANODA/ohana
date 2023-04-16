@@ -10,7 +10,7 @@ const state = atom({
     sex: "invalid",
     birthday: "",
     address: "",
-    work_yaer: "invalid",
+    joined_at: "",
     phone_number: "",
     is_admin: false,
     admin_mail_address: "",
@@ -76,13 +76,13 @@ const addressIsInvalid = selector({
   },
 });
 
-const workYaerIsInvalid = selector({
-  key: `${key}/selector/workYaer/validate`,
+const joinedAtIsInvalid = selector({
+  key: `${key}/selector/joinedAt/validate`,
   get: ({ get }) => {
-    const { work_yaer } = get(state);
-    if (work_yaer === "invalid") { return true }
+    const { joined_at } = get(state);
+    if (joined_at === "") { return true }
 
-    return false ;
+    return false;
   },
 });
 
@@ -116,7 +116,7 @@ export const selectors = {
   useNameIsInvalid: () => useRecoilValue(nameIsInvalid),
   useBirthdayIsInvalid: () => useRecoilValue(birthdayIsInvalid),
   useAddressIsInvalid: () => useRecoilValue(addressIsInvalid),
-  useWorkYaerIsInvalid: () => useRecoilValue(workYaerIsInvalid),
+  useJoinedAtIsInvalid: () => useRecoilValue(joinedAtIsInvalid),
   usePhoneNumberIsInvalid: () => useRecoilValue(phoneNumberIsInvalid),
   useAdminMailAddressIsInvalid: () => useRecoilValue(adminMailAddressIsInvalid),
 }
@@ -154,11 +154,11 @@ export const actions = {
     }, [setState])
   }),
 
-  useSetWorkYaer: (() => {
+  useSetJoinedAt: (() => {
     const setState = useSetRecoilState(state)
 
-    return React.useCallback((workYaer) => {
-      setState((prev) => ({ ...prev, work_yaer: workYaer }))
+    return React.useCallback((joinedAt) => {
+      setState((prev) => ({ ...prev, joined_at: joinedAt }))
     }, [setState])
   }),
 
