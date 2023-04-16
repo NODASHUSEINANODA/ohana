@@ -21,9 +21,9 @@ const state = atom({
 const searched = selector({
   key: `${key}/selector/searched`,
   get: ({ get }) => {
-    const currectState = get(state);
+    const currentState = get(state);
 
-    return currectState.searched;
+    return currentState.searched;
   },
 });
 

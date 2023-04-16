@@ -14,25 +14,25 @@ const state = atom({
     phone_number: "",
     is_admin: false,
     admin_mail_address: "",
-    submited: false,
+    submitted: false,
   }
 })
 
 const isAdmin = selector({
   key: `${key}/selector/isAdmin`,
   get: ({ get }) => {
-    const currectState = get(state);
+    const currentState = get(state);
 
-    return currectState.is_admin;
+    return currentState.is_admin;
   },
 });
 
-const submited = selector({
-  key: `${key}/selector/submited`,
+const submitted = selector({
+  key: `${key}/selector/submitted`,
   get: ({ get }) => {
-    const currectState = get(state);
+    const currentState = get(state);
 
-    return currectState.submited;
+    return currentState.submitted;
   },
 });
 
@@ -111,7 +111,7 @@ const adminMailAddressIsInvalid = selector({
 
 export const selectors = {
   useIsAdmin: () => useRecoilValue(isAdmin),
-  useSubmited: () => useRecoilValue(submited),
+  useSubmitted: () => useRecoilValue(submitted),
   useSexIsInvalid: () => useRecoilValue(sexIsInvalid),
   useNameIsInvalid: () => useRecoilValue(nameIsInvalid),
   useBirthdayIsInvalid: () => useRecoilValue(birthdayIsInvalid),
@@ -186,11 +186,11 @@ export const actions = {
     }, [setState])
   }),
 
-  useSetTrueSubmited: (() => {
+  useSetTrueSubmitted: (() => {
     const setState = useSetRecoilState(state)
 
     return React.useCallback(() => {
-      setState((prev) => ({ ...prev, submited: true }))
+      setState((prev) => ({ ...prev, submitted: true }))
     }, [setState])
   })
 }
