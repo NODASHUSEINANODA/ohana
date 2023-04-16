@@ -23,7 +23,7 @@ const searched = selector({
   get: ({ get }) => {
     const currectState = get(state);
 
-    return currectState.searched ;
+    return currectState.searched;
   },
 });
 
@@ -32,10 +32,10 @@ const phoneNumberIsInvalid = selector({
   get: ({ get }) => {
     const { phone_number } = get(state);
     const phoneNumberRegex = /^\d{10}$|^\d{11}$/
-    if(phone_number === '') { return false }
-    if(!phoneNumberRegex.test(phone_number)) { return true }
+    if (phone_number === '') { return false }
+    if (!phoneNumberRegex.test(phone_number)) { return true }
 
-    return false ;
+    return false;
   },
 });
 

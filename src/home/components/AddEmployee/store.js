@@ -23,7 +23,7 @@ const isAdmin = selector({
   get: ({ get }) => {
     const currectState = get(state);
 
-    return currectState.is_admin ;
+    return currectState.is_admin;
   },
 });
 
@@ -32,7 +32,7 @@ const submited = selector({
   get: ({ get }) => {
     const currectState = get(state);
 
-    return currectState.submited ;
+    return currectState.submited;
   },
 });
 
@@ -42,7 +42,7 @@ const nameIsInvalid = selector({
     const { name } = get(state);
     if (name === "") { return true }
 
-    return false ;
+    return false;
   },
 });
 
@@ -52,7 +52,7 @@ const sexIsInvalid = selector({
     const { sex } = get(state);
     if (sex === "invalid") { return true }
 
-    return false ;
+    return false;
   },
 });
 
@@ -62,7 +62,7 @@ const birthdayIsInvalid = selector({
     const { birthday } = get(state);
     if (birthday === "") { return true }
 
-    return false ;
+    return false;
   },
 });
 
@@ -72,7 +72,7 @@ const addressIsInvalid = selector({
     const { address } = get(state);
     if (address === "") { return true }
 
-    return false ;
+    return false;
   },
 });
 
@@ -93,7 +93,7 @@ const phoneNumberIsInvalid = selector({
     const phoneNumberRegex = /^\d{10}$|^\d{11}$/
     if (!phoneNumberRegex.test(phone_number)) { return true }
 
-    return false ;
+    return false;
   },
 });
 
@@ -105,7 +105,7 @@ const adminMailAddressIsInvalid = selector({
     if (is_admin === false) { return false }
     if (!adminMailAddressRegex.test(admin_mail_address)) { return true }
 
-    return false ;
+    return false;
   },
 });
 
