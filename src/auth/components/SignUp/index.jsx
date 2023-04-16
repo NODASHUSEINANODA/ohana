@@ -1,30 +1,19 @@
-import { useState } from "react";
 import { Button, Container, Form, Row, Col } from 'react-bootstrap'
+import { actions, selectors } from "./store";
 import Auth from "../../../core/datasources/Auth";
 
 export const SignUp = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [address, setAddress] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordConfirmation, setPasswordConfirmation] = useState("");
-  const confirmSuccessUrl = "http://localhost:3000";
+  const state = selectors.useParams()
 
-  const generateParams = () => {
-    const signUpParams = {
-      name: name,
-      email: email,
-      address: address,
-      password: password,
-      passwordConfirmation: passwordConfirmation,
-      confirmSuccessUrl: confirmSuccessUrl,
-    };
-    return signUpParams;
-  };
+  const setName = actions.useSetName()
+  const setEmail = actions.useSetEmail()
+  const setAddress = actions.useSetAddress()
+  const setPassword = actions.useSetPassword()
+  const setPasswordConfirmation = actions.useSetPasswordConfirmation()
 
   const handleSignUpSubmit = async (e) => {
     e.preventDefault();
-    const params = generateParams();
+    const params = state;
 
     try {
       const res = await Auth.signUp(params);
@@ -115,15 +104,6 @@ export const SignUp = () => {
               <Form.Control.Feedback type="invalid">
                 入力欄が空です。
               </Form.Control.Feedback>
-            </Form.Group>
-          </Col>
-          <Col md={2}>
-            <Form.Group className="mb-3" controlId="confirm_success_url">
-              <Form.Control
-                required
-                type='hidden'
-                value={confirmSuccessUrl}
-              />
             </Form.Group>
           </Col>
           <Col xs={8} />

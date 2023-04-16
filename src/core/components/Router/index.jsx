@@ -30,7 +30,7 @@ const Router = () => {
           <Route path="*" element={<Navigate to="/signin" replace />} />
         </Routes>
       </BrowserRouter>
-    );
+    );  
   }
 
   return (
