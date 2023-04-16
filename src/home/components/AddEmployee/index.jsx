@@ -7,7 +7,7 @@ const AddEmployee = () => {
   const sexIsInvalid = selectors.useSexIsInvalid()
   const birthdayIsInvalid = selectors.useBirthdayIsInvalid()
   const addressIsInvalid = selectors.useAddressIsInvalid()
-  const workYearIsInvalid = selectors.useWorkYaerIsInvalid()
+  const joinedAtIsInvalid = selectors.useJoinedAtIsInvalid()
   const phoneNumberIsInvalid = selectors.usePhoneNumberIsInvalid()
   const adminMailAddressIsInvalid = selectors.useAdminMailAddressIsInvalid()
   const isAdmin = selectors.useIsAdmin()
@@ -15,7 +15,7 @@ const AddEmployee = () => {
   const setSex = actions.useSetSex()
   const setBirthday = actions.useSetBirthday()
   const setAddress = actions.useSetAddress()
-  const setWorkYear = actions.useSetWorkYaer()
+  const setJoinedAt = actions.useSetJoinedAt()
   const setPhoneNumber = actions.useSetPhoneNumber()
   const setIdAdmin = actions.useSetIsAdmin()
   const setAdminMailAddress = actions.useSetAdminMailAddress()
@@ -109,21 +109,16 @@ const AddEmployee = () => {
             </Form.Group>
           </Col>
           <Col md={2}>
-            <Form.Group className="mb-3" controlId="work_yaer">
-              <Form.Label>勤続年数 :</Form.Label>
-              <Form.Select
+            <Form.Group className="mb-3" controlId="joined_at">
+              <Form.Label>入社日 :</Form.Label>
+              <Form.Control
                 required
-                aria-label="Default select example"
+                type='date'
                 onChange={(event) => {
-                  setWorkYear(event.target.value)
+                  setJoinedAt(event.target.value)
                 }}
-                isInvalid={submited && workYearIsInvalid}
-              >
-                <option defaultValue="invalid" selected disabled>--選択--</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-              </Form.Select>
+                isInvalid={submited && joinedAtIsInvalid}
+              />
               <Form.Control.Feedback type="invalid">
                 選択してください。
               </Form.Control.Feedback>

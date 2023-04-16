@@ -5,7 +5,7 @@ import Modal from 'react-bootstrap/Modal';
 import { actions, selectors } from './store';
 import { selectors as EmployeesSelectors } from '../Employees/store';
 import './index.css';
-import { calc_age, dateToIso8601 } from '../../../lib/Date';
+import { calc_elapsed_year, dateToIso8601 } from '../../../lib/Date';
 
 const EditEmployee = () => {
   const showEdit = selectors.useShowEdit()
@@ -65,7 +65,7 @@ const EditEmployee = () => {
           <Col md={1}>
             <Form.Group className="mb-3" controlId="age">
               <Form.Label>年齢</Form.Label>
-              <h5 className='px-3'>{calc_age(employee?.birthday)}</h5>
+              <h5 className='px-3'>{calc_elapsed_year(employee?.birthday)}</h5>
             </Form.Group>
           </Col>
           <Col md={3}>
@@ -81,19 +81,16 @@ const EditEmployee = () => {
             </Form.Group>
           </Col>
           <Col md={2}>
-            <Form.Group className="mb-3" controlId="work_yaer">
-              <Form.Label>勤続年数 :</Form.Label>
-              <Form.Select
-                aria-label="Default select example"
+            <Form.Group className="mb-3" controlId="joined_at">
+              <Form.Label>入社日 :</Form.Label>
+              <Form.Control
+                required
+                type='date'
                 onChange={(event) => {
+                  // TODO: APIに社員情報を変更するリクエストに変更
                   console.log(event)
                 }}
-              >
-                <option defaultValue="" selected>--選択--</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-              </Form.Select>
+              />
             </Form.Group>
           </Col>
           <Col md={2}>
