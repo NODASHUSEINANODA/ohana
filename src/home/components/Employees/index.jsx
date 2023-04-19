@@ -1,18 +1,17 @@
 import { useEffect } from 'react'
-import { Button, Container, Table } from 'react-bootstrap'
+import { Container, Table } from 'react-bootstrap'
 import { actions, selectors } from './store'
-import EditEmployee from '../EditEmployee'
-import { actions as EditEmployeeActions } from '../EditEmployee/store'
-import { dateToIsoJPStyle, diff_year } from '../../../lib/Date'
+import Employee from '../Employee'
 
 const Employees = () => {
-  const employees = selectors.useEmployees()
+  const data = selectors.useData()
   const fetchEmployees = actions.useFetchEmployees()
-  const setShowEdit = EditEmployeeActions.useSetShowEdit()
 
   useEffect(() => {
     fetchEmployees()
   }, [fetchEmployees])
+
+  if (data[0].employee === null) { return null }
 
   return (
     <>
@@ -32,33 +31,14 @@ const Employees = () => {
             </tr>
           </thead>
           <tbody>
-            {employees && employees.map((employee, index) => {
+            {data && data.map((d) => {
               return (
-                <tr key={index}>
-                  <td className='align-middle small'>{employee.name}</td>
-                  <td className='align-middle small'>{employee.sex}</td>
-                  <td className='align-middle small'>{dateToIsoJPStyle(employee.birthday)}</td>
-                  <td className='align-middle small'>{diff_year(employee.birthday)}歳</td>
-                  <td className='align-middle small'>{employee.address}</td>
-                  <td className='align-middle small'>{diff_year(employee.joined_at)}年</td>
-                  <td>
-                    <Button
-                      className='w-100'
-                      onClick={() => {
-                        setShowEdit(true, index)
-                      }}
-                    >
-                      編集
-                    </Button>
-                  </td>
-                  <td><Button className='w-100'>削除</Button></td>
-                </tr>
+                <Employee open={d.open} employee={d.employee} />
               )
             })}
           </tbody>
         </Table>
       </Container>
-      <EditEmployee />
     </>
   )
 }
