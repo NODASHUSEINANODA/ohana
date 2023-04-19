@@ -38,7 +38,8 @@ const EditEmployee = ({ open, employee }) => {
   }
 
   const handleSubmit = async () => {
-    updateEmployee(employee.id, params)
+    if (phoneNumberIsInvalid) { return }
+    await updateEmployee(employee.id, params)
     console.log('handleSubmit')
   }
 
@@ -155,7 +156,7 @@ const EditEmployee = ({ open, employee }) => {
             </Form.Group>
           </Col>
           <Col xs='auto' className='mb-1 mt-5'>
-            <Button variant="primary" type="submit" className='px-5' >
+            <Button variant="primary" type="submit" className='px-5' disabled={phoneNumberIsInvalid} >
               保存する
             </Button>
           </Col>
