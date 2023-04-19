@@ -5,7 +5,7 @@ import Modal from 'react-bootstrap/Modal';
 import { actions, selectors } from './store';
 import { selectors as EmployeesSelectors } from '../Employees/store';
 import './index.css';
-import { calc_elapsed_year, dateToIso8601 } from '../../../lib/Date';
+import { dateToIso8601, diff_year } from '../../../lib/Date';
 
 const EditEmployee = () => {
   const showEdit = selectors.useShowEdit()
@@ -65,7 +65,7 @@ const EditEmployee = () => {
           <Col md={1}>
             <Form.Group className="mb-3" controlId="age">
               <Form.Label>年齢</Form.Label>
-              <h5 className='px-3'>{calc_elapsed_year(employee?.birthday)}</h5>
+              <h5 className='px-3'>{diff_year(employee?.birthday)}</h5>
             </Form.Group>
           </Col>
           <Col md={3}>
@@ -86,6 +86,7 @@ const EditEmployee = () => {
               <Form.Control
                 required
                 type='date'
+                value={dateToIso8601(employee?.joined_at)}
                 onChange={(event) => {
                   // TODO: APIに社員情報を変更するリクエストに変更
                   console.log(event)

@@ -3,7 +3,7 @@ import { Button, Container, Table } from 'react-bootstrap'
 import { actions, selectors } from './store'
 import EditEmployee from '../EditEmployee'
 import { actions as EditEmployeeActions } from '../EditEmployee/store'
-import { calc_elapsed_year } from '../../../lib/Date'
+import { dateToIsoJPStyle, diff_year } from '../../../lib/Date'
 
 const Employees = () => {
   const employees = selectors.useEmployees()
@@ -37,10 +37,10 @@ const Employees = () => {
                 <tr key={index}>
                   <td className='align-middle small'>{employee.name}</td>
                   <td className='align-middle small'>{employee.sex}</td>
-                  <td className='align-middle small'>{employee.birthday}</td>
-                  <td className='align-middle small'>{calc_elapsed_year(employee.birthday)}歳</td>
+                  <td className='align-middle small'>{dateToIsoJPStyle(employee.birthday)}</td>
+                  <td className='align-middle small'>{diff_year(employee.birthday)}歳</td>
                   <td className='align-middle small'>{employee.address}</td>
-                  <td className='align-middle small'>{calc_elapsed_year(employee.joined_at)}年</td>
+                  <td className='align-middle small'>{diff_year(employee.joined_at)}年</td>
                   <td>
                     <Button
                       className='w-100'
