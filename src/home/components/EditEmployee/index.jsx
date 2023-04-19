@@ -23,6 +23,15 @@ const EditEmployee = ({ open, employee }) => {
     phone_number: phone_number,
     message: message
   }
+  const [phoneNumberIsInvalid, setPhoneNumberIsInvalid] = React.useState(false)
+
+  const checkPhoneNumberIsInvalid = ((newPhoneNumber) => {
+    const phoneNumberRegex = /^0[789]0-\d{4}-\d{4}$/
+    if (newPhoneNumber === '') { return setPhoneNumberIsInvalid(true) }
+    if (!phoneNumberRegex.test(newPhoneNumber)) { return setPhoneNumberIsInvalid(true) }
+
+    setPhoneNumberIsInvalid(false)
+  })
 
   const handleClose = () => {
     setOpen(employee.id, false)
@@ -119,9 +128,10 @@ const EditEmployee = ({ open, employee }) => {
                 onChange={(event) => {
                   console.log(event)
                   setPhoneNumber(event.target.value)
+                  checkPhoneNumberIsInvalid(event.target.value)
                 }}
+                isInvalid={phoneNumberIsInvalid}
               />
-              {/* TODO: あとで電話番号のバリデーションかける */}
               <Form.Control.Feedback type="invalid">
                 適切な値ではありません。ハイフンを除いた半角数字11桁にしてください。
               </Form.Control.Feedback>
