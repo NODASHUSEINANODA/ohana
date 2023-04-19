@@ -5,7 +5,7 @@
       "sex": "女性",
       "birthday": "1999/01/01",
       "address": "福井県A市1-2-3",
-      "work_yaer": 5,
+      "joined_at": "2019/02/17",
       "phone_number": "090-1234-5678",
       "message": "この方は、水色が好きです。"
     },
@@ -14,7 +14,7 @@
       "sex": "男性",
       "birthday": "1999/03/29",
       "address": "福井県B市4-5-6",
-      "work_yaer": 8,
+      "joined_at": "2008/02/07",
       "phone_number": "090-1234-5678",
       "message": "この方は、水色が好きです。"
     },
@@ -23,7 +23,7 @@
       "sex": "男性",
       "birthday": "1999/01/01",
       "address": "福井県C市7-8-9",
-      "work_yaer": 13,
+      "joined_at": "2020/11/11",
       "phone_number": "090-1234-5678",
       "message": "この方は、水色が好きです。"
     },
@@ -32,7 +32,7 @@
       "sex": "女性",
       "birthday": "1999/01/01",
       "address": "福井県A市1-2-3",
-      "work_yaer": 4,
+      "joined_at": "2011/09/12",
       "phone_number": "090-1234-5678",
       "message": "この方は、水色が好きです。"
     },
@@ -41,7 +41,7 @@
       "sex": "女性",
       "birthday": "1999/01/01",
       "address": "福井県B市4-5-6",
-      "work_yaer": 14,
+      "joined_at": "2011/11/11",
       "phone_number": "090-1234-5678",
       "message": "この方は、水色が好きです。"
     },
@@ -50,7 +50,7 @@
       "sex": "男性",
       "birthday": "1999/01/01",
       "address": "福井県C市7-8-9",
-      "work_yaer": 9,
+      "joined_at": "2022/02/22",
       "phone_number": "090-1234-5678",
       "message": "この方は、水色が好きです。"
     },
@@ -59,7 +59,7 @@
       "sex": "男性",
       "birthday": "1999/01/01",
       "address": "福井県A市1-2-3",
-      "work_yaer": 2,
+      "joined_at": "2010/06/12",
       "phone_number": "090-1234-5678",
       "message": "この方は、水色が好きです。"
     }

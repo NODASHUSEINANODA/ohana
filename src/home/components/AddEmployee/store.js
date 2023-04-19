@@ -10,29 +10,29 @@ const state = atom({
     sex: "invalid",
     birthday: "",
     address: "",
-    work_yaer: "invalid",
+    joined_at: "",
     phone_number: "",
     is_admin: false,
     admin_mail_address: "",
-    submited: false,
+    submitted: false,
   }
 })
 
 const isAdmin = selector({
   key: `${key}/selector/isAdmin`,
   get: ({ get }) => {
-    const currectState = get(state);
+    const currentState = get(state);
 
-    return currectState.is_admin ;
+    return currentState.is_admin;
   },
 });
 
-const submited = selector({
-  key: `${key}/selector/submited`,
+const submitted = selector({
+  key: `${key}/selector/submitted`,
   get: ({ get }) => {
-    const currectState = get(state);
+    const currentState = get(state);
 
-    return currectState.submited ;
+    return currentState.submitted;
   },
 });
 
@@ -42,7 +42,7 @@ const nameIsInvalid = selector({
     const { name } = get(state);
     if (name === "") { return true }
 
-    return false ;
+    return false;
   },
 });
 
@@ -52,7 +52,7 @@ const sexIsInvalid = selector({
     const { sex } = get(state);
     if (sex === "invalid") { return true }
 
-    return false ;
+    return false;
   },
 });
 
@@ -62,7 +62,7 @@ const birthdayIsInvalid = selector({
     const { birthday } = get(state);
     if (birthday === "") { return true }
 
-    return false ;
+    return false;
   },
 });
 
@@ -72,17 +72,17 @@ const addressIsInvalid = selector({
     const { address } = get(state);
     if (address === "") { return true }
 
-    return false ;
+    return false;
   },
 });
 
-const workYaerIsInvalid = selector({
-  key: `${key}/selector/workYaer/validate`,
+const joinedAtIsInvalid = selector({
+  key: `${key}/selector/joinedAt/validate`,
   get: ({ get }) => {
-    const { work_yaer } = get(state);
-    if (work_yaer === "invalid") { return true }
+    const { joined_at } = get(state);
+    if (joined_at === "") { return true }
 
-    return false ;
+    return false;
   },
 });
 
@@ -93,7 +93,7 @@ const phoneNumberIsInvalid = selector({
     const phoneNumberRegex = /^\d{10}$|^\d{11}$/
     if (!phoneNumberRegex.test(phone_number)) { return true }
 
-    return false ;
+    return false;
   },
 });
 
@@ -105,18 +105,18 @@ const adminMailAddressIsInvalid = selector({
     if (is_admin === false) { return false }
     if (!adminMailAddressRegex.test(admin_mail_address)) { return true }
 
-    return false ;
+    return false;
   },
 });
 
 export const selectors = {
   useIsAdmin: () => useRecoilValue(isAdmin),
-  useSubmited: () => useRecoilValue(submited),
+  useSubmitted: () => useRecoilValue(submitted),
   useSexIsInvalid: () => useRecoilValue(sexIsInvalid),
   useNameIsInvalid: () => useRecoilValue(nameIsInvalid),
   useBirthdayIsInvalid: () => useRecoilValue(birthdayIsInvalid),
   useAddressIsInvalid: () => useRecoilValue(addressIsInvalid),
-  useWorkYaerIsInvalid: () => useRecoilValue(workYaerIsInvalid),
+  useJoinedAtIsInvalid: () => useRecoilValue(joinedAtIsInvalid),
   usePhoneNumberIsInvalid: () => useRecoilValue(phoneNumberIsInvalid),
   useAdminMailAddressIsInvalid: () => useRecoilValue(adminMailAddressIsInvalid),
 }
@@ -154,11 +154,11 @@ export const actions = {
     }, [setState])
   }),
 
-  useSetWorkYaer: (() => {
+  useSetJoinedAt: (() => {
     const setState = useSetRecoilState(state)
 
-    return React.useCallback((workYaer) => {
-      setState((prev) => ({ ...prev, work_yaer: workYaer }))
+    return React.useCallback((joinedAt) => {
+      setState((prev) => ({ ...prev, joined_at: joinedAt }))
     }, [setState])
   }),
 
@@ -186,11 +186,11 @@ export const actions = {
     }, [setState])
   }),
 
-  useSetTrueSubmited: (() => {
+  useSetTrueSubmitted: (() => {
     const setState = useSetRecoilState(state)
 
     return React.useCallback(() => {
-      setState((prev) => ({ ...prev, submited: true }))
+      setState((prev) => ({ ...prev, submitted: true }))
     }, [setState])
   })
 }

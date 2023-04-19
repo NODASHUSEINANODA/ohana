@@ -2,12 +2,12 @@ import { Button, Container, Form, Row, Col } from 'react-bootstrap'
 import { actions, selectors } from './store'
 
 const AddEmployee = () => {
-  const submited = selectors.useSubmited()
+  const submitted = selectors.useSubmitted()
   const nameIsInvalid = selectors.useNameIsInvalid()
   const sexIsInvalid = selectors.useSexIsInvalid()
   const birthdayIsInvalid = selectors.useBirthdayIsInvalid()
   const addressIsInvalid = selectors.useAddressIsInvalid()
-  const workYearIsInvalid = selectors.useWorkYaerIsInvalid()
+  const joinedAtIsInvalid = selectors.useJoinedAtIsInvalid()
   const phoneNumberIsInvalid = selectors.usePhoneNumberIsInvalid()
   const adminMailAddressIsInvalid = selectors.useAdminMailAddressIsInvalid()
   const isAdmin = selectors.useIsAdmin()
@@ -15,15 +15,15 @@ const AddEmployee = () => {
   const setSex = actions.useSetSex()
   const setBirthday = actions.useSetBirthday()
   const setAddress = actions.useSetAddress()
-  const setWorkYear = actions.useSetWorkYaer()
+  const setJoinedAt = actions.useSetJoinedAt()
   const setPhoneNumber = actions.useSetPhoneNumber()
   const setIdAdmin = actions.useSetIsAdmin()
   const setAdminMailAddress = actions.useSetAdminMailAddress()
-  const setTrueSubmited = actions.useSetTrueSubmited()
+  const setTrueSubmitted = actions.useSetTrueSubmitted()
 
   const handleSubmit = (event) => {
     const form = event.currentTarget;
-    setTrueSubmited()
+    setTrueSubmitted()
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
@@ -48,7 +48,7 @@ const AddEmployee = () => {
                 onChange={(event) => {
                   setName(event.target.value)
                 }}
-                isInvalid={submited && nameIsInvalid}
+                isInvalid={submitted && nameIsInvalid}
               />
               <Form.Control.Feedback type="invalid">
                 入力欄が空です。
@@ -64,7 +64,7 @@ const AddEmployee = () => {
                 onChange={(event) => {
                   setSex(event.target.value)
                 }}
-                isInvalid={submited && sexIsInvalid}
+                isInvalid={submitted && sexIsInvalid}
               >
                 <option defaultValue="invalid" selected disabled>--選択--</option>
                 <option value="male">男性</option>
@@ -85,7 +85,7 @@ const AddEmployee = () => {
                 onChange={(event) => {
                   setBirthday(event.target.value)
                 }}
-                isInvalid={submited && birthdayIsInvalid}
+                isInvalid={submitted && birthdayIsInvalid}
               />
               <Form.Control.Feedback type="invalid">
                 選択してください。
@@ -101,7 +101,7 @@ const AddEmployee = () => {
                 onChange={(event) => {
                   setAddress(event.target.value)
                 }}
-                isInvalid={submited && addressIsInvalid}
+                isInvalid={submitted && addressIsInvalid}
               />
               <Form.Control.Feedback type="invalid">
                 入力欄が空です。
@@ -109,21 +109,16 @@ const AddEmployee = () => {
             </Form.Group>
           </Col>
           <Col md={2}>
-            <Form.Group className="mb-3" controlId="work_yaer">
-              <Form.Label>勤続年数 :</Form.Label>
-              <Form.Select
+            <Form.Group className="mb-3" controlId="joined_at">
+              <Form.Label>入社日 :</Form.Label>
+              <Form.Control
                 required
-                aria-label="Default select example"
+                type='date'
                 onChange={(event) => {
-                  setWorkYear(event.target.value)
+                  setJoinedAt(event.target.value)
                 }}
-                isInvalid={submited && workYearIsInvalid}
-              >
-                <option defaultValue="invalid" selected disabled>--選択--</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-              </Form.Select>
+                isInvalid={submitted && joinedAtIsInvalid}
+              />
               <Form.Control.Feedback type="invalid">
                 選択してください。
               </Form.Control.Feedback>
@@ -138,7 +133,7 @@ const AddEmployee = () => {
                 onChange={(event) => {
                   setPhoneNumber(event.target.value)
                 }}
-                isInvalid={submited && phoneNumberIsInvalid}
+                isInvalid={submitted && phoneNumberIsInvalid}
               />
               <Form.Control.Feedback type="invalid">
                 入力欄が空か、適切な値ではありません。ハイフンを除いた半角数字11桁にしてください。
@@ -168,7 +163,7 @@ const AddEmployee = () => {
                   onChange={(event) => {
                     setAdminMailAddress(event.target.value)
                   }}
-                  isInvalid={submited && adminMailAddressIsInvalid}
+                  isInvalid={submitted && adminMailAddressIsInvalid}
                 />
                 <Form.Control.Feedback type="invalid">
                   入力欄が空か、適切な値ではありません。

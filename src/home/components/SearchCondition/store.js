@@ -10,7 +10,7 @@ const state = atom({
     sex: "",
     birthday: "",
     address: "",
-    work_yaer: null,
+    joined_at: null,
     phone_number: "",
     is_admin: false,
     admin_mail_address: "",
@@ -21,9 +21,9 @@ const state = atom({
 const searched = selector({
   key: `${key}/selector/searched`,
   get: ({ get }) => {
-    const currectState = get(state);
+    const currentState = get(state);
 
-    return currectState.searched ;
+    return currentState.searched;
   },
 });
 
@@ -32,10 +32,10 @@ const phoneNumberIsInvalid = selector({
   get: ({ get }) => {
     const { phone_number } = get(state);
     const phoneNumberRegex = /^\d{10}$|^\d{11}$/
-    if(phone_number === '') { return false }
-    if(!phoneNumberRegex.test(phone_number)) { return true }
+    if (phone_number === '') { return false }
+    if (!phoneNumberRegex.test(phone_number)) { return true }
 
-    return false ;
+    return false;
   },
 });
 
@@ -77,11 +77,11 @@ export const actions = {
     }, [setState])
   }),
 
-  useSetWorkYaer: (() => {
+  useSetJoinedAt: (() => {
     const setState = useSetRecoilState(state)
 
-    return React.useCallback((workYaer) => {
-      setState((prev) => ({ ...prev, work_yaer: workYaer }))
+    return React.useCallback((joined_at) => {
+      setState((prev) => ({ ...prev, joined_at: joined_at }))
     }, [setState])
   }),
 

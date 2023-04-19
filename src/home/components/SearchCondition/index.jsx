@@ -8,7 +8,7 @@ const SearchCondition = () => {
   const setSex = actions.useSetSex()
   const setBirthday = actions.useSetBirthday()
   const setAddress = actions.useSetAddress()
-  const setWorkYear = actions.useSetWorkYaer()
+  const setJoinedAt = actions.useSetJoinedAt()
   const setPhoneNumber = actions.useSetPhoneNumber()
   const search = actions.useSearch()
 
@@ -80,19 +80,15 @@ const SearchCondition = () => {
             </Form.Group>
           </Col>
           <Col md={2}>
-            <Form.Group className="mb-3" controlId="work_yaer">
-              <Form.Label>勤続年数 :</Form.Label>
-              <Form.Select
-                aria-label="Default select example"
+            <Form.Group className="mb-3" controlId="joined_at">
+              <Form.Label>入社日 :</Form.Label>
+              <Form.Control
+                required
+                type='date'
                 onChange={(event) => {
-                  setWorkYear(event.target.value)
+                  setJoinedAt(event.target.value)
                 }}
-              >
-                <option defaultValue="" selected>--選択--</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-              </Form.Select>
+              />
             </Form.Group>
           </Col>
           <Col md={2}>
