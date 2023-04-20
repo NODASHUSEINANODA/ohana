@@ -1,45 +1,33 @@
-import Cookies from "js-cookie";
 import { useEffect } from "react";
 import { Button, Container, Form, Row, Col } from 'react-bootstrap'
 import { actions, selectors } from "./store";
-import { selectors as LoginUserSelectors } from "../../../core/components/LoginUser/store";
-import Auth from "../../../core/datasources/Auth";
+import { selectors as loginUserSelectors, actions as loginUserActions } from "../../../core/components/LoginUser/store";
+import { actions as alertActions } from "../../../core/components/Alert/store";
+import { useNavigate } from "react-router-dom";
 
 export const SignIn = () => {
-  const currentUser = LoginUserSelectors.useCurrentUser()
+  const showError = alertActions.useDangerShow()
+  const currentUser = loginUserSelectors.useCurrentUser()
 
-  // const history = useHistory();
+  const navigate = useNavigate();
   const state = selectors.useParams()
   const setEmail = actions.useSetEmail()
   const setPassword = actions.useSetPassword()
+  const signIn = loginUserActions.useSignIn(showError)
 
   const handleSignInSubmit = async (e) => {
     e.preventDefault();
-    const params = state;
 
     try {
-      const res = await Auth.signIn(params);
-      if (res.status === 200) {
-        Cookies.set("_access_token", res.headers["access-token"]);
-        Cookies.set("_client", res.headers["client"]);
-        Cookies.set("_uid", res.headers["uid"]);
-
-        // setIsSignedIn(true);
-        // setCurrentUser(res.data.data);
-
-        // history.push("/");
-      }
-    } catch (e) {
-      console.log(e);
+      await signIn(state)
+    } catch (error) {
+      console.log(error);
     }
   };
 
   useEffect(() => {
-    if (currentUser) {
-      // history.push("/");
-    }
-  }, [currentUser
-  ])
+    if (currentUser) { navigate("/") }
+  }, [currentUser, navigate])
 
   return (
     <Container>
