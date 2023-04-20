@@ -1,6 +1,7 @@
 import React from "react";
 import { atom, selector, useRecoilValue, useSetRecoilState } from "recoil";
 import Auth from '../../datasources/Auth'
+import Cookies from "js-cookie";
 
 const key = 'login_user'
 
@@ -47,6 +48,36 @@ export const actions = {
             ...prev,
             currentUser: res.data.data
           }))
+          console.log(res.data.data);
+        } else {
+          console.log("no current user");
+        }
+      } catch (e) {
+        setState((prev) => ({ ...prev, currentUser: null }))
+        showError(e.message)
+        throw e
+      } finally {
+        setState((prev) => ({ ...prev, loading: false }))
+      }
+    }, [setState, showError])
+  }),
+
+  useSignIn: ((showError) => {
+    const setState = useSetRecoilState(state)
+
+    return React.useCallback(async ({ email, password }) => {
+      setState((prev) => ({ ...prev, loading: true }))
+      try {
+        const res = await Auth.signIn({ email, password });
+        console.log('res')
+        console.log(res)
+
+        if (res?.status === 200) {
+          Cookies.set("_access_token", res.headers["access-token"]);
+          Cookies.set("_client", res.headers["client"]);
+          Cookies.set("_uid", res.headers["uid"]);
+
+          setState((prev) => ({ ...prev, currentUser: res.data.data }))
           console.log(res.data.data);
         } else {
           console.log("no current user");
