@@ -90,7 +90,7 @@ const phoneNumberIsInvalid = selector({
   key: `${key}/selector/phoneNumber/validate`,
   get: ({ get }) => {
     const { phone_number } = get(state);
-    const phoneNumberRegex = /^\d{10}$|^\d{11}$/
+    const phoneNumberRegex = /^0[789]0-\d{4}-\d{4}$/
     if (!phoneNumberRegex.test(phone_number)) { return true }
 
     return false;
