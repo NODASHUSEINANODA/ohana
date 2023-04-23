@@ -9,11 +9,11 @@ export default class Auth {
     if (!Cookies.get("_access_token") || !Cookies.get("_client") || !Cookies.get("_uid")) return;
 
     try {
-      return await client.get("/auth/sessions", {
+      return await client.get("/api/auth/sessions", {
         headers: {
           "access-token": Cookies.get("_access_token"),
-          client: Cookies.get("_client"),
-          uid: Cookies.get("_uid"),
+          "client": Cookies.get("_client"),
+          "uid": Cookies.get("_uid"),
         },
       });
     } catch (error) {
@@ -24,11 +24,11 @@ export default class Auth {
 
   static async signOut() {
     try {
-      return await client.delete("/auth/sign_out", {
+      return await client.delete("/api/auth/sign_out", {
         headers: {
           "access-token": Cookies.get("_access_token"),
-          client: Cookies.get("_client"),
-          uid: Cookies.get("_uid"),
+          "client": Cookies.get("_client"),
+          "uid": Cookies.get("_uid"),
         },
       });
     } catch (error) {
@@ -39,7 +39,7 @@ export default class Auth {
 
   static async signIn(params) {
     try {
-      return client.post("/auth/sign_in", params);
+      return client.post("/api/auth/sign_in", params);
     } catch (error) {
       if (axios.isAxiosError(error)) throw new RequestError(error)
       throw error
@@ -48,7 +48,7 @@ export default class Auth {
 
   static async signUp(params) {
     try {
-      return client.post("/auth", params);
+      return client.post("/api/auth", params);
     } catch (error) {
       if (axios.isAxiosError(error)) throw new RequestError(error)
       throw error

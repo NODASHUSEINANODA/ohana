@@ -1,10 +1,10 @@
-import axios from "axios";
+import client from "../../lib/Client";
 
 export default class Employees {
   static async get(params) {
     try {
-      const URL = 'http://localhost:3000/api/employees'
-      return await axios.get(URL, { params: params });
+      const URL = '/api/employees'
+      return await client.get(URL, { params: params });
     } catch (error) {
       throw error
     }
@@ -12,8 +12,8 @@ export default class Employees {
 
   static async update(id, params) {
     try {
-      const URL = `http://localhost:3000/api/employees/${id}`
-      const res = await axios.put(URL, { 'employee': params });
+      const URL = `/api/employees/${id}`
+      const res = await client.put(URL, { 'employee': params });
       console.log(res)
       return res
     } catch (error) {
