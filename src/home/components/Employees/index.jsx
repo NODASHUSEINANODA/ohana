@@ -2,16 +2,18 @@ import { useEffect } from 'react'
 import { Container, Table } from 'react-bootstrap'
 import { actions, selectors } from './store'
 import Employee from '../Employee'
+import { selectors as LoginUserSelectors } from '../../../core/components/LoginUser/store'
 
 const Employees = () => {
   const data = selectors.useData()
   const fetchEmployees = actions.useFetchEmployees()
+  const currentUser = LoginUserSelectors.useCurrentUser()
 
   useEffect(() => {
     fetchEmployees()
   }, [fetchEmployees])
 
-  if (data[0].employee === null) { return null }
+  if (currentUser === null || data[0]?.employee === null) { return null }
 
   return (
     <>
