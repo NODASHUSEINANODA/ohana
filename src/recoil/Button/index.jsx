@@ -7,6 +7,8 @@ const RecoilButton = () => {
   const number = selectors.useNumber()
   const square = selectors.useSquare()
 
+  console.log(number)
+
   return (
     <>
       <h1>number: {number}</h1>
